@@ -66,7 +66,7 @@ for date,temp_max,temp_min in zip(forecast_dates,forecast_max_temps,forecast_min
 
 print(weather_forecast_report)
 
-weather_webhook = 'https://sert333.app.n8n.cloud/webhook/23cc0824-144d-45ce-a3c9-15f3bf6f8e34'
+weather_webhook = 'https://n8n.nextlablogic.com/webhook/23cc0824-144d-45ce-a3c9-15f3bf6f8e34'
 
 responds = requests.post(weather_webhook,json = weather_observation + weather_forecast_report)
 
