@@ -1,4 +1,5 @@
 import requests
+import time
 
 def cal(temp,rain):
     if temp < 5:
@@ -23,7 +24,15 @@ for city in cities:
 
     weather_url = f'https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&daily=temperature_2m_max,temperature_2m_min&current=temperature_2m,rain,wind_speed_10m&timezone=Europe%2FBerlin&forecast_days=14'
 
-    responds = requests.get(weather_url,timeout = 15)
+    for attemp in range(3):
+
+        try: 
+            responds = requests.get(weather_url,timeout = 15)
+            break
+        except requests.exceptions.Timeout:
+            if attemp == 2:
+                raise
+            time.sleep(3)
 
     weather_data = responds.json()
 
